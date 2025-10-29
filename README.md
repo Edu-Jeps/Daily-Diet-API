@@ -9,37 +9,37 @@ Esta aplicação tem como objetivo gerenciar refeições de usuários, permitind
 
 ### 🧩 Regras de Negócio
 
-- [] Cada refeição deve estar associada a um usuário.
-- [] O usuário só pode visualizar, editar e apagar as refeições que ele criou.
-- [] Deve ser possível recuperar as métricas de um usuário:
-  - [] Quantidade total de refeições registradas.
-  - [] Quantidade total de refeições dentro da dieta.
-  - [] Quantidade total de refeições fora da dieta.
-  - [] Melhor sequência de refeições dentro da dieta.
-- [] Cada refeição deve indicar se está dentro ou fora da dieta.
+- [ ] Cada refeição deve estar associada a um usuário.
+- [ ] O usuário só pode visualizar, editar e apagar as refeições que ele criou.
+- [ ] Deve ser possível recuperar as métricas de um usuário:
+  - [ ] Quantidade total de refeições registradas.
+  - [ ] Quantidade total de refeições dentro da dieta.
+  - [ ] Quantidade total de refeições fora da dieta.
+  - [ ] Melhor sequência de refeições dentro da dieta.
+- [ ] Cada refeição deve indicar se está dentro ou fora da dieta.
 
 ---
 
 ### ⚙️ Regras Funcionais
 
-- [] Deve ser possível **criar um usuário**.
-- [] Deve ser possível **identificar o usuário entre as requisições**.
-- [] Deve ser possível **registrar uma refeição** com os seguintes campos:
-  - [] Nome
-  - [] Descrição
-  - [] Data e Hora
-  - [] Status (dentro ou fora da dieta)
-- [] Deve ser possível **editar uma refeição**, alterando qualquer campo.
-- [] Deve ser possível **apagar uma refeição**.
-- [] Deve ser possível **listar todas as refeições de um usuário**.
-- [] Deve ser possível **visualizar uma única refeição**.
+- [X] Deve ser possível **criar um usuário**.
+- [X] Deve ser possível **identificar o usuário entre as requisições**.
+- [ ] Deve ser possível **registrar uma refeição** com os seguintes campos:
+  - [ ] Nome
+  - [ ] Descrição
+  - [ ] Data e Hora
+  - [ ] Status (dentro ou fora da dieta)
+- [ ] Deve ser possível **editar uma refeição**, alterando qualquer campo.
+- [ ] Deve ser possível **apagar uma refeição**.
+- [ ] Deve ser possível **listar todas as refeições de um usuário**.
+- [ ] Deve ser possível **visualizar uma única refeição**.
 
 ---
 
 ### 🧱 Regras Não Funcionais
 
-- [] O sistema deve ser possível **identificar o usuário entre as requisições**.
-- [] O acesso às refeições deve ser **restrito ao usuário que criou**.
+- [X] O sistema deve ser possível **identificar o usuário entre as requisições**.
+- [ ] O acesso às refeições deve ser **restrito ao usuário que criou**.
 
 
 ---
