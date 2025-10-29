@@ -61,6 +61,7 @@ export async function usersRoutes(app: FastifyInstance) {
             res.cookie('sessionId', sessionId, {
                 path: '/',
                 maxAge: 60 * 60 * 24 * 7, // 7 days
+                httpOnly: true,
             })
         }
         
@@ -75,5 +76,7 @@ export async function usersRoutes(app: FastifyInstance) {
         return res.status(201).send()
 
     })
+
+
 }
 
