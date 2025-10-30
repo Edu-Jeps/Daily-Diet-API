@@ -43,7 +43,7 @@ describe.todo('Registrando uma refeição', () => {
     execSync('npm run knex migrate:latest')
   })
 
-  test('Criar refeição para um usuário existente', async () => {
+  test.only('Criar refeição para um usuário existente', async () => {
     const createUserResponse = await request(app.server)
       .post('/users')
       .send({
@@ -53,17 +53,16 @@ describe.todo('Registrando uma refeição', () => {
     
     const cookies = createUserResponse.get('Set-Cookie')
     
-
-    const best_meal_sequence = await request(app.server)
-      .get(`/users/${createUserResponse.body.id}`)
-      .set('Cookie', cookies!)
-      .get('best_meal_sequence')
-
     const pessoa = await request(app.server)
-      .get(`/users/${createUserResponse.body.id}`)
+      .get('/users')
       .set('Cookie', cookies!)
 
-    const refeicao = await request(app.server)
+    const usuario = pessoa.body.users[0]
+    
+
+    let  updatedBestMealSequence
+
+    await request(app.server)
       .post('/meals')
       .set('Cookie', cookies!)
       .send({
@@ -71,22 +70,86 @@ describe.todo('Registrando uma refeição', () => {
         description: 'Salada de alface e tomate',
         date_time: new Date().toISOString(),
         is_healthy: true,
-        id_usuario: createUserResponse.body.id,
+        id_usuario: usuario.id,
+      })
+
+    const refeicoes1 = await request(app.server)
+      .get('/meals')
+      .set('Cookie', cookies!)
+    
+    const refeicao1 = refeicoes1.body.snacks[1]      
+
+    console.log('AAAAAAAAAA' + JSON.stringify(refeicoes1.body.snacks[1]))
+    
+    if (refeicao1.is_healthy) {
+      updatedBestMealSequence = usuario.meal_sequence + 1
+      await request(app.server)
+        .patch(`/users/${usuario.id}`)
+        .send({
+          meal_sequence: updatedBestMealSequence,
+        })
+    } else {
+      await request(app.server)
+        .patch(`/users/${usuario.id}`)
+        .send({
+          meal_sequence: 0,
+        })
+    }
+
+    await request(app.server)
+      .post('/meals')
+      .set('Cookie', cookies!)
+      .send({
+        name: 'Salada',
+        description: 'Salada de alface e tomate',
+        date_time: new Date().toISOString(),
+        is_healthy: true,
+        id_usuario: usuario.id,
+      })
+      
+    const refeicoes2 = await request(app.server)
+      .get('/meals')
+      .set('Cookie', cookies!)
+    
+    const refeicao2 = refeicoes2.body.snacks[1]
+      
+    if (refeicao2.is_healthy) {
+      updatedBestMealSequence = usuario.meal_sequence + 1
+      await request(app.server)
+        .patch(`/users/${usuario.id}`)
+        .send({
+          meal_sequence: updatedBestMealSequence,
+        })
+    } else {
+      await request(app.server)
+        .patch(`/users/${usuario.id}`)
+        .send({
+          meal_sequence: 0,
+        })
+    }
+
+    console.log('aqui pessoa: ' + JSON.stringify(usuario))
+
+
+
+    let resultBestSequence = 0
+
+    // comparando a sequencia atual com a melhor sequencia 
+    if(usuario.best_meal_sequence < usuario.meal_sequence) {
+        resultBestSequence = usuario.meal_sequence
+    } else {
+        resultBestSequence = usuario.best_meal_sequence
+    }
+    await request(app.server)
+      .patch(`/users/${usuario.id}`)
+      .send({
+        meal_sequence: updatedBestMealSequence,
+        best_meal_sequence: resultBestSequence
       })
       .expect(201)
-
-      if (refeicao.body.is_healthy) {
-        const updatedBestMealSequence = best_meal_sequence + 1
-        
-        await request(app.server)
-          .patch(`/users/${createUserResponse.body.id}/best_meal_sequence`)
-          .set('Cookie', cookies!)
-          .send({ best_meal_sequence: updatedBestMealSequence })
-      } else {
-        await request(app.server)
-          .patch(`/users/${createUserResponse.body.id}/best_meal_sequence`)
-          .set('Cookie', cookies!)
-          .send({ best_meal_sequence: 0 })
-      }
+      // console.log('apos verificar a melhor sequencia' + JSON.stringify(usuario))
+  
+  console.log('chegou aqui')
+  console.log('apos verificar a melhor sequencia' + JSON.stringify(usuario))
   })
 })

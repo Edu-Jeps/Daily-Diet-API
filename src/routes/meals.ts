@@ -33,19 +33,25 @@ export async function snackRoutes(app: FastifyInstance) {
             is_healthy,
             user_id: userInfo.id,
         })
-
-
+       
         if (is_healthy) {
-            const updatedBestMealSequence = userInfo.best_meal_sequence + 1
-
+            const updatedMealSequence = userInfo.meal_sequence + 1
+            
+            // comparando a sequencia atual com a melhor sequencia 
+            if(userInfo.best_meal_sequence < updatedMealSequence) { 
+                await db('users') 
+                    .where({ id: userInfo.id })
+                    .update({ best_meal_sequence: updatedMealSequence })
+            } 
             await db('users') 
                 .where({ id: userInfo.id })
-                .update({ best_meal_sequence: updatedBestMealSequence })
+                .update({ meal_sequence: updatedMealSequence })
         } else {
             await db('users')
                 .where({ id: userInfo.id })
-                .update({ best_meal_sequence: 0 })
+                .update({ meal_sequence: 0 })
         }   
+
 
         await db('snacks').select().where({ user_id: userInfo.id })
 
@@ -73,7 +79,7 @@ export async function snackRoutes(app: FastifyInstance) {
             return res.status(404).send({ error: 'Nenhum lanche encontrado.' })
         }
 
-        return res.status(200).send({ snacks })
+        return res.status(200).send()
     })
 
     app.get('/:id',
@@ -101,7 +107,7 @@ export async function snackRoutes(app: FastifyInstance) {
             if (!snackInfo) {
                 return res.status(404).send({ error: 'Lanche não encontrado.' })
             } else {
-                return res.status(200).send({ snack: snackInfo })
+                return res.status(200).send()
             }
         } catch (error) {
             return res.status(404).send({ error: 'Não foi possivel encontrar o lanche.' })
