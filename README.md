@@ -10,7 +10,7 @@ Esta aplicação tem como objetivo gerenciar refeições de usuários, permitind
 ### 🧩 Regras de Negócio
 
 - [X] Cada refeição deve estar associada a um usuário.
-- [ ] O usuário só pode visualizar, editar e apagar as refeições que ele criou.
+- [X] O usuário só pode visualizar, editar e apagar as refeições que ele criou.
 - [ ] Deve ser possível recuperar as métricas de um usuário:
   - [ ] Quantidade total de refeições registradas.
   - [ ] Quantidade total de refeições dentro da dieta.
@@ -29,17 +29,17 @@ Esta aplicação tem como objetivo gerenciar refeições de usuários, permitind
   - [X] Descrição
   - [X] Data e Hora
   - [X] Status (dentro ou fora da dieta)
-- [ ] Deve ser possível **editar uma refeição**, alterando qualquer campo.
-- [ ] Deve ser possível **apagar uma refeição**.
-- [ ] Deve ser possível **listar todas as refeições de um usuário**.
-- [ ] Deve ser possível **visualizar uma única refeição**.
+- [X] Deve ser possível **editar uma refeição**, alterando qualquer campo.
+- [X] Deve ser possível **apagar uma refeição**.
+- [X] Deve ser possível **listar todas as refeições de um usuário**.
+- [X] Deve ser possível **visualizar uma única refeição**.
 
 ---
 
 ### 🧱 Regras Não Funcionais
 
 - [X] O sistema deve ser possível **identificar o usuário entre as requisições**.
-- [ ] O acesso às refeições deve ser **restrito ao usuário que criou**.
+- [X] O acesso às refeições deve ser **restrito ao usuário que criou**.
 
 
 ---
