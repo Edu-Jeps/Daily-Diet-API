@@ -12,3 +12,4 @@ app.register(usersRoutes, { prefix: '/users' })
 app.register(snackRoutes, { prefix: '/meals' })
 
 
+
