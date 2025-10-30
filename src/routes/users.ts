@@ -65,14 +65,13 @@ export async function usersRoutes(app: FastifyInstance) {
             })
         }
         
-        const usuario = await db('users').insert({
+        await db('users').insert({
             id: randomUUID(),
             session_id: sessionId,
             username,
             email,
         })
         
-        console.log('User created successfully', usuario)
         return res.status(201).send()
 
     })
