@@ -11,11 +11,11 @@ Esta aplicação tem como objetivo gerenciar refeições de usuários, permitind
 
 - [X] Cada refeição deve estar associada a um usuário.
 - [X] O usuário só pode visualizar, editar e apagar as refeições que ele criou.
-- [ ] Deve ser possível recuperar as métricas de um usuário:
-  - [ ] Quantidade total de refeições registradas.
-  - [ ] Quantidade total de refeições dentro da dieta.
-  - [ ] Quantidade total de refeições fora da dieta.
-  - [ ] Melhor sequência de refeições dentro da dieta.
+- [X] Deve ser possível recuperar as métricas de um usuário:
+  - [X] Quantidade total de refeições registradas.
+  - [X] Quantidade total de refeições dentro da dieta.
+  - [X] Quantidade total de refeições fora da dieta.
+  - [X] Melhor sequência de refeições dentro da dieta.
 - [X] Cada refeição deve indicar se está dentro ou fora da dieta.
 
 ---
