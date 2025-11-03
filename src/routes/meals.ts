@@ -79,7 +79,7 @@ export async function snackRoutes(app: FastifyInstance) {
             return res.status(404).send({ error: 'Nenhum lanche encontrado.' })
         }
 
-        return res.status(200).send()
+        return res.status(200).send({ snacks })
     })
 
     app.get('/:id',
@@ -107,7 +107,7 @@ export async function snackRoutes(app: FastifyInstance) {
             if (!snackInfo) {
                 return res.status(404).send({ error: 'Lanche não encontrado.' })
             } else {
-                return res.status(200).send()
+                return res.status(200).send({ snack: snackInfo })
             }
         } catch (error) {
             return res.status(404).send({ error: 'Não foi possivel encontrar o lanche.' })
@@ -138,7 +138,7 @@ export async function snackRoutes(app: FastifyInstance) {
             // para segurança informo que não foi encontrado o lanche
             // assim não indico se o erro é do lanche ou do usuário
             if (userInfo.session_id !== sessionId) {
-                return res.status(404).send({ error: 'Lanche não encontrado..' })
+                return res.status(404).send({ error: 'Lanche não encontrado.' })
             }
             
             if (!snackInfo) {

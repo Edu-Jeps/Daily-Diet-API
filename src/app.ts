@@ -14,3 +14,4 @@ app.register(snackRoutes, { prefix: '/meals' })
 
 app.register(metricsRoutes, { prefix: '/metrics' })
 
+
